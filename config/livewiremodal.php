@@ -4,5 +4,5 @@ return [
     /**
      * Options: bs4 | bs5.
      */
-    'theme' => 'bs4',
+    'theme' => 'bs5',
 ];
