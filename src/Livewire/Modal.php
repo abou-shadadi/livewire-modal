@@ -1,6 +1,6 @@
 <?php
 
-namespace devsrv\LivewireModal\Http\Livewire;
+namespace devsrv\LivewireModal\Livewire;
 
 use Livewire\Component;
 
@@ -15,7 +15,7 @@ class Modal extends Component
         $this->activeModal = $modal;
         $this->args = $args;
 
-        $this->dispatchBrowserEvent('modal-ready', ['modal' => $modal]);
+        $this->dispatch('modal-ready', ['modal' => $modal]);
     }
 
     public function closeModal() {
