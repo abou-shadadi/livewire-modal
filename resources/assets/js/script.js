@@ -57,7 +57,12 @@ function _livewireModal() {
                 modalInstance.show();
             }
 
-            Livewire.emitTo('base-wire-modal', 'initModal', event.detail.modal, event.detail.args);            
+            Livewire.dispatch('initModal', {
+                component: 'base-wire-modal',
+                modal: event.detail.modal,
+                args: event.detail.args
+            });
+                     
         }
     };
 }
