@@ -4,7 +4,7 @@ namespace devsrv\LivewireModal;
 
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use devsrv\LivewireModal\Http\Livewire\Modal as WireModal;
+use devsrv\LivewireModal\Livewire\Modal as WireModal;
 use devsrv\LivewireModal\Components\{
     Base,
     ModalBase,
