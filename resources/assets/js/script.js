@@ -63,8 +63,12 @@ function _livewireModal() {
             //     args: event.detail.args
             // });
 
-            Livewire.emitTo('base-wire-modal', 'initModal', event.detail.modal, event.detail.args);
-
+            // Livewire.emitTo('base-wire-modal', 'initModal', event.detail.modal, event.detail.args);
+            Livewire.dispatchTo('base-wire-modal', 'initModal', {
+                modal: event.detail.modal,
+                args: event.detail.args
+            });
+            
                      
         }
     };
