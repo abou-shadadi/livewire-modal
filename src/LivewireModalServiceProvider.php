@@ -17,6 +17,7 @@ use devsrv\LivewireModal\Components\UI\{
 
 class LivewireModalServiceProvider extends ServiceProvider
 {
+
     public function boot()
     {
         Livewire::component('base-wire-modal', WireModal::class);
