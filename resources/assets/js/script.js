@@ -7,34 +7,40 @@ function _livewireModal() {
         boot() {
             const modalClose = () => {
                 const modalElement = document.getElementById('x-modal');
-                
+
+                // Ensure no duplicate backdrops remain by disposing of the modal instance
                 if (_livewiremodal.theme === 'bs5') {
                     const modalInstance = bootstrap.Modal.getInstance(modalElement);
                     if (modalInstance) {
-                        modalInstance.hide(); // Hide the modal properly in Bootstrap 5
-                        modalInstance.dispose(); // Ensure the modal instance is disposed of
+                        modalInstance.hide();
+                        modalInstance.dispose();
                     }
                 } else if (_livewiremodal.theme === 'bs4') {
                     $('#x-modal').modal('hide');
                 }
 
-                // Manually remove any lingering backdrop in case it's not removed
+                // Remove any remaining backdrop
                 document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
                     backdrop.remove();
                 });
 
-                // Dispatch event to Livewire to handle the modal closing logic
+                // Dispatch the Livewire event for modal close
                 Livewire.dispatch('close-modal', { component: 'base-wire-modal' });
                 this.ready = false;
             };
 
             if (_livewiremodal.theme === 'bs5') {
-                document.getElementById('x-modal').addEventListener('hidden.bs.modal', (e) => modalClose());
+                document.getElementById('x-modal').addEventListener('hidden.bs.modal', () => modalClose());
             } else if (_livewiremodal.theme === 'bs4') {
-                $('#x-modal').on('hidden.bs.modal', (e) => modalClose());
+                $('#x-modal').on('hidden.bs.modal', () => modalClose());
             }
         },
         onOpen(event) {
+            // Remove any existing backdrops before showing a new modal to avoid duplication
+            document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+                backdrop.remove();
+            });
+
             this.heading = event.detail.title;
             this.modal = event.detail.modal;
             this.size = Object.prototype.hasOwnProperty.call(event.detail, 'size') ? event.detail.size : null;
@@ -45,8 +51,8 @@ function _livewireModal() {
             } else if (_livewiremodal.theme === 'bs5') {
                 const modalElement = document.getElementById('x-modal');
                 const modalInstance = new bootstrap.Modal(modalElement, {
-                    backdrop: true, // Default backdrop behavior (can set to 'static' or false as needed)
-                    keyboard: true // Allow closing with keyboard (ESC)
+                    backdrop: true, // or 'static' depending on desired behavior
+                    keyboard: true
                 });
                 modalInstance.show();
             }
