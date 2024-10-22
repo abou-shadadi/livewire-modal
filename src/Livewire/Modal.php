@@ -17,7 +17,7 @@ class Modal extends Component
         $this->activeModal = $modal;
         $this->args = $args;
         // Use dispatch() method for Livewire 3 to send an event to the frontend
-        $this->dispatchBrowserEvent('modal-ready', ['modal' => $modal]);
+      //  $this->dispatchBrowserEvent('modal-ready', ['modal' => $modal]);
 
     }
 
