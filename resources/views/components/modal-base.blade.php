@@ -17,10 +17,10 @@
                         </div>
                     </template>
                 </div>
-                @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs4' )
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @elseif(config('livewiremodal.theme') === 'bs5')
+                @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs5' )
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                @elseif(config('livewiremodal.theme') === 'bs4')
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 @endif
             </div>
             <div id="x--modal-body-wrapper">
@@ -37,10 +37,10 @@
                         </div>
                     </div>
                     <div class="d-flex modal-footer">
-                        @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs4' )
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        @elseif(config('livewiremodal.theme') === 'bs5')
+                        @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs5' )
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        @elseif(config('livewiremodal.theme') === 'bs5')
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         @endif
                     </div>
                 </div>
@@ -55,5 +55,5 @@
 
 <link rel="stylesheet" href="{{ asset('vendor/livewiremodal/css/skeleton.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('vendor/livewiremodal/css/line-progress.min.css') }}">
-<script>window._livewiremodal = window._livewiremodal || { theme: "{{ config('livewiremodal.theme') ?? 'bs4' }}" }</script>
+<script>window._livewiremodal = window._livewiremodal || { theme: "{{ config('livewiremodal.theme') ?? 'bs5' }}" }</script>
 <script src="{{ asset('vendor/livewiremodal/js/script.min.js') }}"></script>
