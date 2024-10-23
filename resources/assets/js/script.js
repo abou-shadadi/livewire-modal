@@ -1,7 +1,7 @@
 function _livewireModal() {
     return {
         ready: false,
-        modal: '',
+        modal: null,
         size: null,
         heading: 'loading . . .',
         boot() {
@@ -15,6 +15,7 @@ function _livewireModal() {
                         modalInstance.hide();
                         modalInstance.dispose();
                     }
+
                 } else if (_livewiremodal.theme === 'bs4') {
                     $('#x-modal').modal('hide');
                 }
@@ -36,45 +37,34 @@ function _livewireModal() {
             }
         },
         onOpen(event) {
+            const detail = Array.isArray(event.detail) ? event.detail[0] : event.detail;
             // Remove any existing backdrops before showing a new modal to avoid duplication
             document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
                 backdrop.remove();
             });
 
-            this.heading = event.detail.title;
-            this.modal = event.detail.modal;
-            this.size = Object.prototype.hasOwnProperty.call(event.detail, 'size') ? event.detail.size : null;
+            this.heading = detail.title;
+            this.modal = detail.modal;
+            this.size = detail.size || null;
             this.ready = false;
 
-            if (_livewiremodal.theme === 'bs4') {
+            if(_livewiremodal.theme === 'bs4') {
                 $('#x-modal').modal('show');
-            } else if (_livewiremodal.theme === 'bs5') {
-                const modalElement = document.getElementById('x-modal');
-                const modalInstance = new bootstrap.Modal(modalElement, {
-                    backdrop: true, // or 'static' depending on desired behavior
-                    keyboard: true
-                });
-                modalInstance.show();
+            } else if(_livewiremodal.theme === 'bs5') {
+                new bootstrap.Modal(document.getElementById('x-modal')).show();
             }
 
-            // Livewire.dispatch('initModal', {
-            //     component: 'base-wire-modal',
-            //     modal: event.detail.modal,
-            //     args: event.detail.args
-            // });
-
-            // Livewire.emitTo('base-wire-modal', 'initModal', event.detail.modal, event.detail.args);
-            Livewire.dispatchTo('base-wire-modal', 'initModal', {
-                modal: event.detail.modal,
-                args: event.detail.args
+            Livewire.dispatch('initModal', {
+                component: 'base-wire-modal',
+                modal: 'dashboard.modules.user.modals.manage',
+                args: detail.args
             });
-            
-                     
         }
     };
 }
 
 function _openModal(title, modal, params = [], size = null) {
+    alert('Title: ' + title); // Debug alert to confirm title
     window.dispatchEvent(new CustomEvent('open-x-modal', {
         detail: {
             title: title,
@@ -84,3 +74,4 @@ function _openModal(title, modal, params = [], size = null) {
         }
     }));
 }
+

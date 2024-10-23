@@ -3,29 +3,35 @@
 namespace devsrv\LivewireModal\Livewire;
 
 use Livewire\Component;
-
+use Livewire\Attributes\On;
 class Modal extends Component
+
 {
     public $activeModal = null;
-    public $args = [];
+    public $args = []; // Declare args as a public property
 
-    protected $listeners = ['initModal', 'closeModal'];
-
+    #[On('initModal')]
     public function initModal($modal, $args = [])
     {
         $this->activeModal = $modal;
         $this->args = $args;
-
+        // Trigger the modal ready event if needed
         $this->dispatch('modal-ready', ['modal' => $modal]);
     }
 
+
+    // Method to close the modal and reset properties
+    #[On('closeModal')]
     public function closeModal()
     {
-        $this->reset(['activeModal', 'args']);
+        $this->activeModal = null;
+        $this->args = [];
+        $this->reset(['modal', 'args']);
     }
 
     public function render()
     {
+        // Render the modal view
         return view('livewiremodal::livewire.modal');
     }
 }

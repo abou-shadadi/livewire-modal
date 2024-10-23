@@ -10,7 +10,7 @@
                     <template x-if="!ready">
                         <div class="spinner-border spinner-border-sm text-dark ml-2" role="status">
                             @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs5' )
-                           
+
                             <span class="visually-hidden">Loading...</span>
                             @elseif(config('livewiremodal.theme') === 'bs4')
                             <span class="sr-only">Loading...</span>
