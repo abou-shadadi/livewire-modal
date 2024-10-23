@@ -105,7 +105,7 @@ No consideration required, create livewire component as usual. Use livewire's `m
 ###### ✔️ From Livewire Class
 
 ```php
-$this->dispatchBrowserEvent('open-x-modal', ['title' => 'My Modal', 'modal' => 'product.order', 'args' => ['id' => 1, 'rate' => 20]]);
+$this->dispatch('open-x-modal', ['title' => 'My Modal', 'modal' => 'product.order', 'args' => ['id' => 1, 'rate' => 20]]);
 ```
 
 > 💡 Modal size supports `sm` `lg` `xl`        *// completely optional*
