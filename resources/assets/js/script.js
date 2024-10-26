@@ -56,7 +56,8 @@ function _livewireModal() {
 
             Livewire.dispatch('initModal', {
                 component: 'base-wire-modal',
-                modal: 'dashboard.modules.user.modals.manage',
+                modal: detail.modal,
+                size: detail.size,
                 args: detail.args
             });
         }
