@@ -65,7 +65,6 @@ function _livewireModal() {
 }
 
 function _openModal(title, modal, params = [], size = null) {
-    alert('Title: ' + title); // Debug alert to confirm title
     window.dispatchEvent(new CustomEvent('open-x-modal', {
         detail: {
             title: title,

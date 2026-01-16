@@ -21,12 +21,12 @@ class Modal extends Component
 
 
     // Method to close the modal and reset properties
-    #[On('closeModal')]
+    #[On('close-modal')]
     public function closeModal()
     {
         $this->activeModal = null;
         $this->args = [];
-        $this->reset(['modal', 'args']);
+        $this->reset(['activeModal', 'args']);
     }
 
     public function render()

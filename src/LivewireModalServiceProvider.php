@@ -34,6 +34,10 @@ class LivewireModalServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../public/dist' => public_path('vendor/livewiremodal'),
+        ], 'livewiremodal-assets');
+
+        $this->publishes([
+            __DIR__.'/../public/dist' => public_path('vendor/livewiremodal'),
         ], 'public');
 
         $this->publishes([
@@ -54,6 +58,6 @@ class LivewireModalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/../config/livewiremodal.php', 'livewiremodal');
     }
 }

@@ -19,8 +19,8 @@ Turn Laravel Livewire Component into Modal.
 |---|---|---|
 | Jquery  |   | *for bootstrap 4 only* 
 |  Laravel | >= 7 |   |
-|  Livewire | >= 2.0  |   |
-|  Alpine JS |  |   |
+|  Livewire | >= 3.0  |   |
+|  Alpine JS | >= 3.0  |   |
 
 
 ## 📥 Installation
@@ -29,13 +29,31 @@ Turn Laravel Livewire Component into Modal.
 composer require devsrv/livewire-modal
 ```
 
+#### Installing from Git (dev-master)
+
+If you're using a fork / VCS repository, add it to your application's `composer.json`:
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/abou-shadadi/livewire-modal"
+    }
+  ],
+  "require": {
+    "devsrv/livewire-modal": "dev-master"
+  }
+}
+```
+
 #### Include the base modal component
 ```html
 <html>
 <head>
     ...
     @livewireStyles
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
     ...
@@ -47,7 +65,7 @@ composer require devsrv/livewire-modal
 
 #### Publish assets
 ```shell
-php artisan vendor:publish --provider="devsrv\LivewireModal\LivewireModalServiceProvider" --tag=public
+php artisan vendor:publish --provider="devsrv\LivewireModal\LivewireModalServiceProvider" --tag=livewiremodal-assets
 ```
 
 #### Publish config
@@ -59,7 +77,7 @@ php artisan vendor:publish --provider="devsrv\LivewireModal\LivewireModalService
 ### 📌 Updating
 > **Important:** when updating the package make sure to re-publish the assets with `--force` flag
 ```shell
-php artisan vendor:publish --provider="devsrv\LivewireModal\LivewireModalServiceProvider" --tag=public --force
+php artisan vendor:publish --provider="devsrv\LivewireModal\LivewireModalServiceProvider" --tag=livewiremodal-assets --force
 ```
 
 
@@ -105,7 +123,7 @@ No consideration required, create livewire component as usual. Use livewire's `m
 ###### ✔️ From Livewire Class
 
 ```php
-$this->dispatch('open-x-modal', ['title' => 'My Modal', 'modal' => 'product.order', 'args' => ['id' => 1, 'rate' => 20]]);
+$this->dispatch('open-x-modal', title: 'My Modal', modal: 'product.order', args: ['id' => 1, 'rate' => 20]);
 ```
 
 > 💡 Modal size supports `sm` `lg` `xl`        *// completely optional*
@@ -135,6 +153,63 @@ you are free to put content in livewire view file in any structure, however the 
 ```php 
 $this->info('<strong>Hi !</strong>, i am an alert');  // support `info` `warning` `success` `danger`
 ```
+
+## Customization
+
+#### Customize the modal content (recommended)
+
+The modal renders your target Livewire component, so you can design your modal UI in your component view however you like.
+
+Optionally, you can use the provided UI wrapper component for a Bootstrap-friendly structure:
+
+```html
+<x-livewiremodal-modal>
+    ...
+
+    <x-slot name="footer">
+        <button type="button" class="btn btn-primary">Save</button>
+    </x-slot>
+</x-livewiremodal-modal>
+```
+
+#### Customize the modal shell/layout (override package views)
+
+If you want to customize the Bootstrap modal container markup (header/footer/layout/loading UI/assets inclusion), override the package views by creating files under:
+
+`resources/views/vendor/livewiremodal/...`
+
+Examples:
+
+- Override `livewiremodal::components.modal-base`:
+  - create `resources/views/vendor/livewiremodal/components/modal-base.blade.php`
+- Override `livewiremodal::components.ui.modal`:
+  - create `resources/views/vendor/livewiremodal/components/ui/modal.blade.php`
+
+Laravel will automatically use your overridden views instead of the package views.
+
+## Troubleshooting
+
+#### `Loading failed for the <script> ... /vendor/livewiremodal/js/script.min.js`
+
+This means the package assets are not published to your app's `public/` directory.
+
+```shell
+php artisan vendor:publish --provider="devsrv\LivewireModal\LivewireModalServiceProvider" --tag=livewiremodal-assets --force
+```
+
+After publishing, these files should exist:
+
+- `public/vendor/livewiremodal/js/script.min.js`
+- `public/vendor/livewiremodal/css/skeleton.min.css`
+
+#### `Alpine Expression Error: _livewireModal is not defined`
+
+This usually happens when the script above failed to load (404).
+
+Also confirm:
+
+- Your page includes AlpineJS (v3 recommended)
+- Your page includes Bootstrap JS (and jQuery if you're using Bootstrap 4)
 
 
 ## Changelog

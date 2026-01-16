@@ -1,3 +1,20 @@
+<script>
+    window._livewireModal = window._livewireModal || function () {
+        return {
+            ready: false,
+            modal: null,
+            size: null,
+            heading: 'loading . . .',
+            boot() {
+                console.error('livewiremodal: assets not loaded. Publish them via: php artisan vendor:publish --tag=livewiremodal-assets');
+            },
+            onOpen() {
+                console.error('livewiremodal: assets not loaded. Publish them via: php artisan vendor:publish --tag=livewiremodal-assets');
+            },
+        };
+    }
+</script>
+
 <div id="x-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal">
     <div x-data="_livewireModal()" x-on:open-x-modal.window="onOpen($event)"
         x-on:modal-ready.window="ready = true"
@@ -44,7 +61,7 @@
                     <div class="d-flex modal-footer">
                         @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs5' )
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        @elseif(config('livewiremodal.theme') === 'bs5')
+                        @elseif(config('livewiremodal.theme') === 'bs4')
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         @endif
                     </div>
