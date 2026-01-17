@@ -27,7 +27,7 @@
                 <div class="d-flex align-items-center">
                     <h5 class="modal-title" x-text="heading"></h5>
                     <template x-if="!ready">
-                        <div class="spinner-border spinner-border-sm text-dark ml-2" role="status">
+                        <div class="spinner-border spinner-border-sm text-dark ml-3" role="status">
                             @if(! config('livewiremodal.theme') || config('livewiremodal.theme') === 'bs5' )
 
                             <span class="visually-hidden">Loading...</span>
