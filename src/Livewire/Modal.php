@@ -27,6 +27,7 @@ class Modal extends Component
         $this->activeModal = null;
         $this->args = [];
         $this->reset(['activeModal', 'args']);
+        $this->dispatch('modal-closed'); // Signal that modal has been closed
     }
 
     public function render()

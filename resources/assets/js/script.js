@@ -29,6 +29,30 @@ function _livewireModal() {
 
                 // Dispatch the Livewire event for modal close
                 Livewire.dispatch('close-modal', { component: 'base-wire-modal' });
+                Livewire.find('base-wire-modal').resetPage();
+
+                // Aggressive cleanup: remove any Livewire wire:loading/click-block elements
+                document.querySelectorAll('[wire\\:loading], [wire\\:click]').forEach(el => el.remove());
+
+                // Replace modal container HTML to clear any leftover Livewire state
+                const modalContent = modalElement.querySelector('.modal-content');
+                if (modalContent) {
+                    modalContent.outerHTML = `
+                        <div class="modal-header align-items-center">
+                            <div class="d-flex align-items-center">
+                                <h5 class="modal-title"></h5>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="d-flex modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    `;
+                }
+
                 this.ready = false;
             };
 
