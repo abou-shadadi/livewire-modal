@@ -29,10 +29,22 @@ function _livewireModal() {
 
                 // Dispatch the Livewire event for modal close
                 Livewire.dispatch('close-modal', { component: 'base-wire-modal' });
-                Livewire.find('base-wire-modal').resetPage();
+
+                // Try to reset the base-wire-modal component
+                try {
+                    Livewire.find('base-wire-modal').resetPage();
+                } catch (e) {
+                    console.warn('livewiremodal: Livewire.find failed, doing manual cleanup', e);
+                }
 
                 // Aggressive cleanup: remove any Livewire wire:loading/click-block elements
                 document.querySelectorAll('[wire\\:loading], [wire\\:click]').forEach(el => el.remove());
+
+                // Remove any Livewire overlay that blocks clicks
+                document.querySelectorAll('[data-lw], [wire\\:initial-data]').forEach(el => el.remove());
+
+                // Remove any leftover modal-backdrops
+                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
 
                 // Replace modal container HTML to clear any leftover Livewire state
                 const modalContent = modalElement.querySelector('.modal-content');
