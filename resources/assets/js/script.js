@@ -63,7 +63,10 @@ function _livewireModal() {
             }
 
             // Listen for programmatic close
-            window.addEventListener('close-x-modal', modalClose);
+            window.addEventListener('close-x-modal', (e) => {
+                console.log('livewiremodal: close-x-modal received', e);
+                modalClose();
+            });
         },
         onOpen(event) {
             const detail = Array.isArray(event.detail) ? event.detail[0] : event.detail;
