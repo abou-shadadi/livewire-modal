@@ -37,6 +37,9 @@ function _livewireModal() {
             } else if (_livewiremodal.theme === 'bs4') {
                 $('#x-modal').on('hidden.bs.modal', () => modalClose());
             }
+
+            // Listen for programmatic close
+            window.addEventListener('close-x-modal', modalClose);
         },
         onOpen(event) {
             const detail = Array.isArray(event.detail) ? event.detail[0] : event.detail;

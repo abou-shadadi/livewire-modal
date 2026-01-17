@@ -130,6 +130,39 @@ $this->dispatch('open-x-modal', title: 'My Modal', modal: 'product.order', args:
 > 💡 Modal position supports `top` `bottom`   *// defaults to 'top'; adds modal-dialog-top / modal-dialog-bottom*
 > 💡 Modal effect supports `zoom`            *// adds zoom class to modal container*
 
+## 📦 Modal content example
+
+You can wrap your modal content in `<x-livewiremodal-modal>` for Bootstrap styling and optional footer:
+
+```blade
+<x-livewiremodal-modal>
+    <form wire:submit.prevent="save">
+        <div class="modal-body">
+            <!-- your form fields -->
+        </div>
+
+        <x-slot name="footer">
+            <button type="button" class="btn btn-secondary" @click="$dispatch('close-x-modal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </x-slot>
+    </form>
+</x-livewiremodal-modal>
+```
+
+## Closing the modal
+
+You can close the modal programmatically by dispatching the `close-x-modal` event:
+
+```blade
+<button type="button" @click="$dispatch('close-x-modal')">Cancel</button>
+```
+
+Or from Livewire:
+
+```php
+$this->dispatch('close-x-modal');
+```
+
 ## 🌈 Bonus
 you are free to put content in livewire view file in any structure, however the package provides an blade component for bootstrap modal which you can use as:
 
