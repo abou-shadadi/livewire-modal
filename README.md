@@ -116,17 +116,19 @@ No consideration required, create livewire component as usual. Use livewire's `m
 	title="Modal Heading"
 	modal="component-name"
    :args="['sky' => 'blue', 'moon' => 1]" 
-   lg>open
+   lg position="top" effect="zoom">open
 </x-livewiremodal-trigger>
 ```
 
 ###### ✔️ From Livewire Class
 
 ```php
-$this->dispatch('open-x-modal', title: 'My Modal', modal: 'product.order', args: ['id' => 1, 'rate' => 20]);
+$this->dispatch('open-x-modal', title: 'My Modal', modal: 'product.order', args: ['id' => 1, 'rate' => 20], size: 'xl', position: 'top', effect: 'zoom');
 ```
 
 > 💡 Modal size supports `sm` `lg` `xl`        *// completely optional*
+> 💡 Modal position supports `top` `bottom`   *// defaults to 'top'; adds modal-dialog-top / modal-dialog-bottom*
+> 💡 Modal effect supports `zoom`            *// adds zoom class to modal container*
 
 ## 🌈 Bonus
 you are free to put content in livewire view file in any structure, however the package provides an blade component for bootstrap modal which you can use as:

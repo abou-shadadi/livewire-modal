@@ -3,6 +3,8 @@
         title: '{{ $title }}',
         modal: '{{ $modal }}',
         size: '{{ $sm ? 'sm' : ($lg ? 'lg' : ($xl ? 'xl' : '')) }}',
+        position: '{{ $position }}',
+        effect: '{{ $effect }}',
         args: {!! str_replace('"', '\'', e(json_encode($args))) !!}
     })"
     type="button" class="{{ $attributes->has('class') ? $attributes->get('class') : 'btn' }}" data-toggle="modal">

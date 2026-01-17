@@ -3,6 +3,8 @@ function _livewireModal() {
         ready: false,
         modal: null,
         size: null,
+        position: 'top',
+        effect: null,
         heading: 'loading . . .',
         boot() {
             const modalClose = () => {
@@ -46,6 +48,8 @@ function _livewireModal() {
             this.heading = detail.title;
             this.modal = detail.modal;
             this.size = detail.size || null;
+            this.position = detail.position || 'top';
+            this.effect = detail.effect || null;
             this.ready = false;
 
             if(_livewiremodal.theme === 'bs4') {

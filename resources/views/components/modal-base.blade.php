@@ -4,6 +4,8 @@
             ready: false,
             modal: null,
             size: null,
+            position: 'top',
+            effect: null,
             heading: 'loading . . .',
             boot() {
                 console.error('livewiremodal: assets not loaded. Publish them via: php artisan vendor:publish --tag=livewiremodal-assets');
@@ -15,11 +17,11 @@
     }
 </script>
 
-<div id="x-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal">
+<div id="x-modal" class="modal fade" :class="effect" tabindex="-1" role="dialog" aria-labelledby="modal">
     <div x-data="_livewireModal()" x-on:open-x-modal.window="onOpen($event)"
         x-on:modal-ready.window="ready = true"
         x-init="boot()"
-        class="modal-dialog" :class="[size ? `modal-${size}` : '']" role="document">
+        class="modal-dialog" :class="[size ? `modal-${size}` : '', position ? `modal-dialog-${position}` : '']" role="document">
         <div class="modal-content">
             <div class="modal-header align-items-center">
                 <div class="d-flex align-items-center">
