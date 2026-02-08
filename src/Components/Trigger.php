@@ -11,6 +11,8 @@ class Trigger extends Component
     public $sm;
     public $lg;
     public $xl;
+    public $xxl;
+    public $fullscreen;
     public $position;
     public $effect;
     public array $args;
@@ -20,13 +22,15 @@ class Trigger extends Component
      *
      * @return void
      */
-    public function __construct($title, $modal, $sm = false, $lg = false, $xl = false, $position = null, $effect = null, array $args = [])
+    public function __construct($title, $modal, $sm = false, $lg = false, $xl = false, $xxl = false, $fullscreen = false, $position = null, $effect = null, array $args = [])
     {
         $this->title = $title;
         $this->modal = $modal;
         $this->sm = $sm;
         $this->lg = $lg;
         $this->xl = $xl;
+        $this->xxl = $xxl;
+        $this->fullscreen = $fullscreen;
         $this->position = $position;
         $this->effect = $effect;
         $this->args = $args;

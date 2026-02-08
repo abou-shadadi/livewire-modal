@@ -2,7 +2,7 @@
     x-data x-on:click="$dispatch('open-x-modal', {
         title: '{{ $title }}',
         modal: '{{ $modal }}',
-        size: '{{ $sm ? 'sm' : ($lg ? 'lg' : ($xl ? 'xl' : '')) }}',
+        size: '{{ $sm ? 'sm' : ($lg ? 'lg' : ($xl ? 'xl' : ($xxl ? 'xxl' : ($fullscreen ? 'fullscreen' : '')))) }}',
         position: '{{ $position }}',
         effect: '{{ $effect }}',
         args: {!! str_replace('"', '\'', e(json_encode($args))) !!}

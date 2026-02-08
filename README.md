@@ -118,15 +118,27 @@ No consideration required, create livewire component as usual. Use livewire's `m
    :args="['sky' => 'blue', 'moon' => 1]" 
    lg position="top" effect="zoom">open
 </x-livewiremodal-trigger>
+
+<!-- XXL size -->
+<x-livewiremodal-trigger title="XXL Modal" modal="component-name" xxl>Open XXL</x-livewiremodal-trigger>
+
+<!-- Fullscreen -->
+<x-livewiremodal-trigger title="Fullscreen Modal" modal="component-name" fullscreen>Open Fullscreen</x-livewiremodal-trigger>
 ```
 
 ###### ✔️ From Livewire Class
 
 ```php
 $this->dispatch('open-x-modal', title: 'My Modal', modal: 'product.order', args: ['id' => 1, 'rate' => 20], size: 'xl', position: 'top', effect: 'zoom');
+
+// Or use xxl
+$this->dispatch('open-x-modal', title: 'XXL Modal', modal: 'product.order', size: 'xxl');
+
+// Or fullscreen
+$this->dispatch('open-x-modal', title: 'Fullscreen Modal', modal: 'product.order', size: 'fullscreen');
 ```
 
-> 💡 Modal size supports `sm` `lg` `xl`        *// completely optional*
+> 💡 Modal size supports `sm` `lg` `xl` `xxl` `fullscreen` *// completely optional*
 > 💡 Modal position supports `top` `bottom`   *// defaults to 'top'; adds modal-dialog-top / modal-dialog-bottom*
 > 💡 Modal effect supports `zoom`            *// adds zoom class to modal container*
 
